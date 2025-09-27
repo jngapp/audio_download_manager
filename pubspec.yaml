@@ -1,0 +1,23 @@
+name: audio_download_manager
+description: "A new Flutter project."
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: ^3.7.2
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  background_downloader: ^9.2.1
+  path_provider: ^2.1.5
+  get_it: ^8.0.3
+  path: ^1.9.1
+  equatable: ^2.0.7
+  flutter_bloc: 9.1.1
+
+dev_dependencies:
+  flutter_lints: ^5.0.0
+
+flutter:
