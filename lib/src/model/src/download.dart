@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui';
 
 import 'package:background_downloader/background_downloader.dart';
 
@@ -7,6 +8,7 @@ class AdmDownloadModel {
   String? url;
   String? fileName;
   String? directory;
+  VoidCallback? onDone;
   // final Future<void> Function(TaskStatusUpdate taskStatusUpdate)? onDone;
 
   AdmDownloadModel({
@@ -14,40 +16,42 @@ class AdmDownloadModel {
     this.url,
     this.fileName,
     this.directory,
-    // this.onDone,
+    this.onDone,
   });
 
-  factory AdmDownloadModel.fromDownloadTask(Task task) {
+  factory AdmDownloadModel.fromDownloadTask(Task task, {VoidCallback? onDone}) {
     return AdmDownloadModel(
       id: task.taskId,
       url: task.url,
       fileName: task.filename,
       directory: task.directory,
+      onDone: onDone,
     );
   }
 
-  factory AdmDownloadModel.fromJson(Map<String, dynamic> json) {
-    return AdmDownloadModel(
-      id: json['id'],
-      url: json['url'],
-      fileName: json['fileName'],
-      directory: json['directory']
-    );
-  }
-  Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'url': url,
-      'fileName': fileName,
-      'directory': directory,
-    };
-  }
+  // factory AdmDownloadModel.fromJson(Map<String, dynamic> json) {
+  //   return AdmDownloadModel(
+  //     id: json['id'],
+  //     url: json['url'],
+  //     fileName: json['fileName'],
+  //     directory: json['directory']
+  //   );
+  // }
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'id': id,
+  //     'url': url,
+  //     'fileName': fileName,
+  //     'directory': directory,
+  //   };
+  // }
 
   AdmDownloadModel copyWith({
     String? id,
     String? url,
     String? fileName,
     String? directory,
+    VoidCallback? onDone,
     // Future<void> Function(TaskStatusUpdate taskStatusUpdate)? onDone,
   }) {
     return AdmDownloadModel(
@@ -55,7 +59,7 @@ class AdmDownloadModel {
       url: url ?? this.url,
       fileName: fileName ?? this.fileName,
       directory: directory ?? this.directory,
-      // onDone: onDone ?? this.onDone,
+      onDone: onDone ?? this.onDone,
     );
   }
 }

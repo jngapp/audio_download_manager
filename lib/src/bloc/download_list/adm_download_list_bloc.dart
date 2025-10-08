@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:isolate';
-import 'dart:ui';
 import 'package:audio_download_manager/audio_download_manager.dart';
 import 'package:background_downloader/background_downloader.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

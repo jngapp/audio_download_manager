@@ -12,7 +12,6 @@ class AdmDownloadConfig {
   const AdmDownloadConfig({
     required this.onDownload,
     this.onCancel,
-    // this.onDone,
     this.notDownloadedWidget,
     this.notDownloadedText,
     this.transitionDuration = const Duration(milliseconds: 500),
@@ -54,6 +53,7 @@ class AdmDownloadButton extends StatelessWidget {
       case AdmDownloadStatus.downloading:
         config.onCancel?.call();
       case AdmDownloadStatus.downloaded:
+        // config.onDone?.call();
         break;
     }
   }

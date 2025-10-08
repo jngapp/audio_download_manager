@@ -117,10 +117,20 @@ class _AdmItemAnimatedWidgetState extends State<AdmItemAnimatedWidget> {
 
   @override
   void initState() {
-    super.initState();
-    _controller = AdmDownloadController();
-    _controller.downloadStatus =
-        widget.config.status ?? AdmDownloadStatus.notDownloaded;
+    super.initState();  _controller = AdmDownloadController();
+
+    // Read current state from BLoC instead of using config.status
+    final listState = context.read<AdmDownloadListBloc>().state;
+
+    if (listState.downloadedList.any((e) => e.id == widget.itemId)) {
+      _controller.downloadStatus = AdmDownloadStatus.downloaded;
+    } else if (listState.enqueuedList.any((e) => e.id == widget.itemId)) {
+      _controller.downloadStatus = AdmDownloadStatus.fetchingDownload;
+    } else if (listState.downloadingList.any((e) => e.id == widget.itemId)) {
+      _controller.downloadStatus = AdmDownloadStatus.downloading;
+    } else {
+      _controller.downloadStatus = widget.config.status ?? AdmDownloadStatus.notDownloaded;
+    }
   }
 
   @override
@@ -152,11 +162,6 @@ class _AdmItemAnimatedWidgetState extends State<AdmItemAnimatedWidget> {
               }
             } else {
               _controller.downloadStatus = AdmDownloadStatus.downloaded;
-              // widget.config.onDone?.call(
-              //   listState.downloadedList.firstWhere(
-              //     (e) => e.id == widget.itemId,
-              //   ),
-              // );
             }
           },
         ),
