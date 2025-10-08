@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:ui';
-
 import 'package:background_downloader/background_downloader.dart';
 
 class AdmDownloadModel {
@@ -8,24 +5,20 @@ class AdmDownloadModel {
   String? url;
   String? fileName;
   String? directory;
-  VoidCallback? onDone;
-  // final Future<void> Function(TaskStatusUpdate taskStatusUpdate)? onDone;
 
   AdmDownloadModel({
     this.id,
     this.url,
     this.fileName,
     this.directory,
-    this.onDone,
   });
 
-  factory AdmDownloadModel.fromDownloadTask(Task task, {VoidCallback? onDone}) {
+  factory AdmDownloadModel.fromDownloadTask(Task task) {
     return AdmDownloadModel(
       id: task.taskId,
       url: task.url,
       fileName: task.filename,
       directory: task.directory,
-      onDone: onDone,
     );
   }
 
@@ -51,7 +44,6 @@ class AdmDownloadModel {
     String? url,
     String? fileName,
     String? directory,
-    VoidCallback? onDone,
     // Future<void> Function(TaskStatusUpdate taskStatusUpdate)? onDone,
   }) {
     return AdmDownloadModel(
@@ -59,7 +51,6 @@ class AdmDownloadModel {
       url: url ?? this.url,
       fileName: fileName ?? this.fileName,
       directory: directory ?? this.directory,
-      onDone: onDone ?? this.onDone,
     );
   }
 }
