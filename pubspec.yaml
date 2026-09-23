@@ -10,9 +10,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  background_downloader: ^9.5.5
+  background_downloader: ^9.6.2
   path_provider: ^2.1.5
-  get_it: ^8.0.3
+  get_it: ^9.3.0
   path: ^1.9.1
   equatable: ^2.0.7
   flutter_bloc: 9.1.1
